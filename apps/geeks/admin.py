@@ -1,8 +1,6 @@
-from django.contrib import admin
-from .models import Settings
+from django.contrib import admin # type: ignore
+from apps.restourant.models import Recipe # type: ignore
 
-# Register your models here.
-@admin.register(Settings)
-class SettingAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'description']
-    
+@admin.register(Recipe)
+class RecipeAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title', 'ingredients', 'instructions', 'preparation_time', 'is_vegetarian']

@@ -1,7 +1,6 @@
-from django.apps import AppConfig
+from django.apps import AppConfig # type: ignore
 
 
-class GeeksConfig(AppConfig):
+class RestourantConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.geeks'
-    verbose_name='Основные натройки'
+    name = 'apps.restourant'

@@ -1,27 +1,14 @@
-from django.shortcuts import render
-from rest_framework.generics import ListAPIView, CreateAPIView , RetrieveAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework import viewsets, mixins # type: ignore
+from .models import Recipe
+from .serializers import RecipeSerializer
 
-from .models import Settings
-from .serializers import *
-
-
-# Create your views here.
-class SettingsAPIView(ListAPIView):  
-    queryset = Settings.objects.all()
-    serializer_class = SettingsSerializer
-
-class SettingsCreateAPI(CreateAPIView):
-    queryset = Settings.objects.all()
-    serializer_class = SettingsCreateSerializer
-
-class SettingsRetrieveAPI(RetrieveAPIView):
-    queryset = Settings.objects.all()
-    serializer_class = SettingsSerializer
-
-class SettingsUpdateAPI(UpdateAPIView):
-    queryset = Settings.objects.all()
-    serializer_class = SettingsSerializer
-
-class SettingsDestroyAPI(DestroyAPIView):
-    queryset = Settings.objects.all()
-    serializer_class = SettingsSerializer
+class RecipeViewSet(
+    mixins.CreateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    mixins.ListModelMixin,
+    viewsets.GenericViewSet
+):
+    queryset = Recipe.objects.all()
+    serializer_class = RecipeSerializer
